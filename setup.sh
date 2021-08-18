@@ -9,7 +9,7 @@ while test $# -gt 0; do
   case "$1" in
     -h|--help)
         echo "**************************************"
-        echo "KBOS - Kill Bluetooth on sleep 🔪🎧😴"
+        echo " bluetooth sleep manager 🔪🎧😴"
         echo "**************************************"
         echo " "
         echo "When run without arguments, this script installs Blueutil and sleepwatcher ( if not installed already ), and configures the two to work together in order to disable bluetooth everytime the computer goes to sleep." 
@@ -84,7 +84,6 @@ fi
 if [[ $(brew ls --versions sleepwatcher) == "" ]]; then
     echo "Could not find sleepwatcher, Installing ..."
     brew install sleepwatcher || exit 1
-    brew services start sleepwatcher || exit 1
 else
     echo "** sleepwatcher OK"
 fi
@@ -96,8 +95,7 @@ echo "***********************"
 
 # Copy sleepscripts to user directory
 mkdir -p ${SLEEP_SCRIPTS_DIR} || exit 1;
-cp ./disable_bluetooth.sh ${SLEEP_SCRIPTS_DIR} || exit 1;
-cp ./enable_bluetooth.sh ${SLEEP_SCRIPTS_DIR} || exit 1;
+cp ./sleep_scripts/* ${SLEEP_SCRIPTS_DIR} || exit 1;
 chmod +x ${SLEEP_SCRIPTS_DIR}/* || exit 1;
 echo "** sleep scripts copied to ~/.sleepscripts"
 
@@ -105,6 +103,7 @@ echo "** sleep scripts copied to ~/.sleepscripts"
 cp ./sleepwatch_bluetooth.plist ${LAUNCH_AGENTS_PATH} || exit 1;
 echo "** sleepwatch_bluetooth.plist copied to  ${LAUNCH_AGENTS_PATH}"
 launchctl load ${KBOS_PLIST_PATH}
+# brew services start sleepwatcher || exit 1
 
 echo " "
 echo "KBOS has been successfully installed 🔪"

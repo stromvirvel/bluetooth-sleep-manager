@@ -1,4 +1,5 @@
-# Kill Bluetooth On Sleep (KBOS)
+# bluetooth sleep manager
+
 Tired of your bluetooth headphones pairing with a MacOs computer you thought was asleep ? This fixes that
 
 KBOS uses `sleepwatcher` and `Blueutil` to turn off bluetooth when your mac falls asleep, then turns it back on when the computer is woken up. 
@@ -15,8 +16,8 @@ KBOS requires [Homebrew](https://brew.sh/) which is used to install the followin
 ### Additional arguments
 ```
 -h, --help                show brief help menu
--d, --disable             disables KBOS, but doesn't uninstall anything.
--e, --enable              re-enables KBOS from a disabled state
+-d, --disable             disables the manager, but doesn't uninstall anything.
+-e, --enable              re-enables the manager from a disabled state
 -u, --uninstall           removes the ~/sleepscripts directory and the KBOS Plist but does NOT uninstall brew, Blueutil, or sleepwatcher. I'll let you handle that on your own https://docs.brew.sh/FAQ#how-do-i-uninstall-a-formula.
 
 ```
